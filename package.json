@@ -1,0 +1,64 @@
+{
+  "name": "sort-package",
+  "displayName": "Sort Package",
+  "version": "1.0.0",
+  "description": "Sort package.json on save or by command",
+  "categories": [
+    "Formatters"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jewlexx/vscode-sort-package"
+  },
+  "license": "WTFPL",
+  "author": {
+    "name": "jewlexx"
+  },
+  "main": "./dist/extension.js",
+  "scripts": {
+    "compile": "webpack",
+    "lint": "eslint src --ext ts",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "vscode:prepublish": "yarn run package",
+    "watch": "webpack --watch"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "sort-package.sortPackage",
+        "title": "Sort Package"
+      }
+    ],
+    "configuration": {
+      "title": "Sort Package",
+      "properties": {
+        "sortPackage.onSave": {
+          "description": "Sort package.json on save",
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onLanguage:json",
+    "onCommand:sort-package.sortPackage"
+  ],
+  "dependencies": {
+    "sort-package-json": "1.53.1"
+  },
+  "devDependencies": {
+    "@types/node": "14.x",
+    "@types/vscode": "1.62.0",
+    "@typescript-eslint/eslint-plugin": "5.3.1",
+    "@typescript-eslint/parser": "5.3.1",
+    "eslint": "8.2.0",
+    "ts-loader": "9.2.6",
+    "typescript": "4.4.4",
+    "webpack": "5.64.0",
+    "webpack-cli": "4.9.1"
+  },
+  "engines": {
+    "vscode": "^1.62.0"
+  }
+}
